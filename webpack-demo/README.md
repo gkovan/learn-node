@@ -1,0 +1,1 @@
+The source for this demo is:  https://www.sitepoint.com/webpack-beginner-guide/
