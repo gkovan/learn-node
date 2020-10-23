@@ -13,7 +13,7 @@ var server = app.listen(3000,  "127.0.0.1", function () {
   });
 
 
-app.use(session({resave: true, saveUninitialized: true, secret: 'XCR3rsasa%RDHHH', cookie: { maxAge: 60000 }}));
+app.use(session({name: "gerry-sid", resave: true, saveUninitialized: true, secret: 'XCR3rsasa%RDHHH', cookie: { maxAge: 60000 }}));
 
 // the following code gets executed for every request
 app.use(function(req,res,next) {
@@ -34,6 +34,14 @@ app.get('/set_session',function(req,res){
  
  // res.end('Saved session and salary : ' + sessionData.username);
  res.json(sessionData.user)
+});
+
+app.get('/gerry', function(req,res) {
+   sessionData = req.session;
+   let mySalary = sessionData.user.salary;
+   mySalary++;
+   sessionData.user.salary = mySalary;
+   res.json(sessionData.user);
 });
 
 app.get('/destroysession',function(req,res){
